@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Rooms</title>
+</head>
+<body>
+    <div id="room-container">
+      <H1>SSS</H1>
+    </div>
+</body>
+<script>
+    let roomsContainer = document.getElementById('room-container')
+    let getRooms = async () => {
+        let response = await fetch('http://127.0.0.1:8000/rooms/')
+        let data = await response.json()
+        console.log("ROOMS:", data)
+        for(let i=0; i<data.length; i++){
+            let room = data[i]
+            let roomEl = document.createElement('div')
+            roomEl.innerHTML = `<h2>${room.name}</h2><p>${room.description}</p>`
+            roomsContainer.appendChild(roomEl)
+        }
+    }    
+    getRooms()
+</script>
+</html>
